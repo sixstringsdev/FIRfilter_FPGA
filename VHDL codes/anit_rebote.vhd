@@ -1,3 +1,5 @@
+--This code basiscally allows us to change switches using the clock of the FPGA
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
