@@ -1,3 +1,4 @@
+-- This is a third order FILTER based on a state machine
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
