@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity filtro_fir is
+entity state_machines is
 	port( 	
 					clk:				in std_logic := '0';
 					
@@ -20,9 +20,9 @@ entity filtro_fir is
 				a2 : integer;
 				a3 : integer
 				);
-end filtro_fir;
+end state_machines;
 
-architecture solucion of filtro_fir is
+architecture solucion of state_machines is
 
 signal state : integer := 0;
 
