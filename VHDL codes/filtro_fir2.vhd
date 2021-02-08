@@ -1,18 +1,18 @@
-	library ieee;
+library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity filtro_gaussiano is
+entity filtro_fir is
 	port(	clk:																			in std_logic;
 					syn:																			in std_logic;
 					clk_mux:																in std_logic;
 					fir_in:																		in std_logic_vector(31 downto 0);
 					fir_out:																	out std_logic_vector(15 downto 0)
 					);
-end filtro_gaussiano;
+end filtro_fir;
 
 
-architecture solucion of filtro_gaussiano is
+architecture solucion of filtro_fir is
 
 signal v1,v2,v3,v4,RD:																					std_logic;
 signal q:																													std_logic_vector(1 downto 0) := (others =>'0');
@@ -21,15 +21,15 @@ signal xout1,xout2,xout3,xout4,xoutemp:								signed(39 downto 0);
 
 component filtro_gauss is
 	port( 	
-					clk:					in std_logic := '0';
+					clk:				in std_logic := '0';
 					
 --Entrada de datos 					
-					data_in:							in signed(31 downto 0) := (others =>'0');
+					data_in:			in signed(31 downto 0) := (others =>'0');
 					sample_valid_in:		in std_logic := '0';
 					
 --Salida de datos
-				data_ext:						out signed(31 downto 0) := (others =>'0');
-				data_out:						out signed(39 downto 0) := (others => '0');
+				data_ext:				out signed(31 downto 0) := (others =>'0');
+				data_out:				out signed(39 downto 0) := (others => '0');
 				sample_valid_out:	out std_logic := '0';
 -- Entrada de datos de los coeficientes
 				a0 : integer;
@@ -44,14 +44,14 @@ begin
 fir_in_32bits <= signed(fir_in);
 
 U1: filtro_gauss	port map (
-    				clk =>			clk,
+    					clk =>				clk,
 					
-					data_in =>					fir_in_32bits,
+					data_in =>			fir_in_32bits,
 					sample_valid_in =>		syn,
 					
-					data_ext =>					   temp1,
-					data_out =>						xout1,
-					sample_valid_out =>	      v1,
+					data_ext =>			temp1,
+					data_out =>			xout1,
+					sample_valid_out =>	     	 v1,
 	 
     a0 => 1699265,	
     a1 => 51806487,	
@@ -61,14 +61,14 @@ U1: filtro_gauss	port map (
     );
 
 U2: filtro_gauss	port map (
-    					clk =>			clk,
+    					clk =>				clk,
 					
-					data_in =>					fir_in_32bits,
+					data_in =>			fir_in_32bits,
 					sample_valid_in =>		syn,
 					
-					data_ext =>					   temp2,
-					data_out =>						xout2,
-					sample_valid_out =>	      v2,
+					data_ext =>			temp2,
+					data_out =>			xout2,
+					sample_valid_out =>	     	v2,
 
     a0 => 4943672,	
     a1 => 85274409,	
@@ -78,15 +78,15 @@ U2: filtro_gauss	port map (
     );
 	 
 U3: filtro_gauss	port map (
-    					clk =>			clk,
+    					clk =>				clk,
 					
-					data_in =>					fir_in_32bits,
+					data_in =>			fir_in_32bits,
 					sample_valid_in =>		syn,
 					
 
-					data_ext =>					   temp3,
-					data_out =>						xout3,
-					sample_valid_out =>	      v3,
+					data_ext =>			temp3,
+					data_out =>			xout3,
+					sample_valid_out =>	     	v3,
 	 
     a0 => 12473824,	
     a1 => 121734827,	
@@ -96,14 +96,14 @@ U3: filtro_gauss	port map (
     );	 
 	 
 U4: filtro_gauss	port map (
-    					clk =>			clk,
+    					clk =>				clk,
 					
-					data_in =>					fir_in_32bits,
+					data_in =>			fir_in_32bits,
 					sample_valid_in =>		syn,
 					
-					data_ext =>					   temp4,
-					data_out =>						xout4,
-					sample_valid_out =>	      v4,
+					data_ext =>			temp4,
+					data_out =>			xout4,
+					sample_valid_out =>	      	v4,
 	 
     a0 => 27296761,	
     a1 => 150720567,	
