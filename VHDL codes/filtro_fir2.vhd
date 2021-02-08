@@ -1,3 +1,4 @@
+--This is a 15th order GAUSSIAN FIR FILTER base on the 3 order filter. Using structural style.
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
