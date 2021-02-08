@@ -20,7 +20,7 @@ signal q:																													std_logic_vector(1 downto 0) := (others =>
 signal fir_in_32bits,temp1,temp2,temp3,temp4: 				signed(31 downto 0);
 signal xout1,xout2,xout3,xout4,xoutemp:								signed(39 downto 0);
 
-component filtro_gauss is
+component state_machines is
 	port( 	
 					clk:				in std_logic := '0';
 					
@@ -44,7 +44,7 @@ begin
 
 fir_in_32bits <= signed(fir_in);
 
-U1: filtro_gauss	port map (
+U1: state_machines	port map (
     					clk =>				clk,
 					
 					data_in =>			fir_in_32bits,
@@ -61,7 +61,7 @@ U1: filtro_gauss	port map (
 
     );
 
-U2: filtro_gauss	port map (
+U2: state_machines	port map (
     					clk =>				clk,
 					
 					data_in =>			fir_in_32bits,
@@ -78,7 +78,7 @@ U2: filtro_gauss	port map (
 
     );
 	 
-U3: filtro_gauss	port map (
+U3: state_machines	port map (
     					clk =>				clk,
 					
 					data_in =>			fir_in_32bits,
@@ -96,7 +96,7 @@ U3: filtro_gauss	port map (
 
     );	 
 	 
-U4: filtro_gauss	port map (
+U4: state_machines	port map (
     					clk =>				clk,
 					
 					data_in =>			fir_in_32bits,
