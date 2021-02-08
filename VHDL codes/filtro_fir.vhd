@@ -2,17 +2,17 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity filtro_gauss is
+entity filtro_fir is
 	port( 	
-					clk:					in std_logic := '0';
+					clk:				in std_logic := '0';
 					
 --Entrada de datos 					
-					data_in:							in signed(31 downto 0) := (others =>'0');
+					data_in:			in signed(31 downto 0) := (others =>'0');
 					sample_valid_in:		in std_logic := '0';
 					
 --Salida de datos
-				data_ext:						out signed(31 downto 0) := (others =>'0');
-				data_out:						out signed(39 downto 0) := (others => '0');
+				data_ext:				out signed(31 downto 0) := (others =>'0');
+				data_out:				out signed(39 downto 0) := (others => '0');
 				sample_valid_out:	out std_logic := '0';
 -- Entrada de datos de los coeficientes
 				a0 : integer;
@@ -20,9 +20,9 @@ entity filtro_gauss is
 				a2 : integer;
 				a3 : integer
 				);
-end filtro_gauss;
+end filtro_fir;
 
-architecture solucion of filtro_gauss is
+architecture solucion of filtro_fir is
 
 signal state : integer := 0;
 
