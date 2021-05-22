@@ -1,4 +1,4 @@
-# FIR_FILTER_FPGA
+# FIR_FILTER
 This project is a digital FIR filter coded in a FPGA. 
 
 The importance of electronic filters is due to their great diversity of applications, such as
